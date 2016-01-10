@@ -1,0 +1,20 @@
+#lang racket
+
+(define map1
+  (λ (f lst)
+      (if (empty? lst)
+          empty
+          (cons (f (first lst)) (map1 f (rest lst))))))
+  
+(define map1-tail
+  (λ (f lst)
+    (letrec ([maptail
+              (λ (f lst r)
+                (if (empty? lst)
+                    empty
+                    (maptail f (rest lst) (cons (f (first lst)) r))))])
+      (maptail f lst '()))))
+
+(define mmap 42)
+
+(define deep-map 42)

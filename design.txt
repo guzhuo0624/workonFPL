@@ -1,0 +1,25 @@
+1. File Table Design:
+	We actually construct a struct filetableentry, which contains a array of file descriptors. 
+	The struct filetableentry has five components(vnode, offset, lock, flag and reference). 
+	According to our design, the fork semantics is supported by giving a copy of parent thread's
+	file table to the child thread. If a child thread wants the copy, it needs to get the lock
+	firstly, then increase the reference count by 1, because it has a same file table as its 
+	parent.
+
+2. Implementation of sfs_getdirentry:
+	For the implementation, we uses two pointers(struct vnode *v, struct uio *uio) as parameters
+	The first one is for us to get the sfs _vnode, and the second one is for us to get the offset
+	for directory, then we get the lock and enter the while loop to read each directory until we find
+	first non-empty directory. Afterwards, we use uiomove to copy the results to a struct uio, then we
+	increment the offset for next directory. then release the lock.
+
+3. use wasted inode space to store file data.
+	Adding a new field in struct sfs_inode named sfs_inlinedata to store the first 448 bytes of the file. In sfs_io() we point the first block of inode's data to this field, and the rest in sfs_direct pointers in sfs_inode struct. 
+	we didn't modify sfs_truncate().
+
+4. Biggest challenge:
+	The most diffcult challenge for us to deal with the debugging. Due to the complexity of relationship
+	between each function, it is hard to trace back the error. Moreover, the error message is not that
+	clear. Especially the way of how it works, it probably different than what we thought.
+	There some tests that we spent a lot time on it, but it is still not working as what we expect. e.g., dirseek gave us (lseek(0, SEEK_CUR): Unimplemented feature) but we definitely finished sys_lseek. And pwd doesn't work properly.(it gives emu0:) in root directory. 
+

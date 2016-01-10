@@ -1,0 +1,53 @@
+(module func scheme
+  
+  ;; (filter f xs) -> list
+  ;; f: boolean-valued procedure applicable to every element of xs
+  ;; xs: list of elements 
+  ;; Return a list of elements from xs on which f is true.
+  ;; Use a single call to foldr.
+  (define filter 
+    (λ (f xs)
+      (foldr (λ (x) (f x)) '() xs)))
+  ;; A recursive version that allows tail-call optimization and
+  ;; visits every list element once.
+  (define filter-tail 42)
+
+  ;; Same as filter, but filters elements in sublists of xs,
+  ;; on any nesting level.
+  ;; Use a single call to foldr and recursion.
+  (define filter-deep 42)
+
+  ;; Similar to filter, but applies all functions in fs as filters.
+  ;; You can use any of the functions you defined above in this solution,
+  ;; plus a single call to foldr.
+  (define filter-all 42)
+
+  #| We represent boolean expressions with a Scheme list as follows:
+  # The two boolean constants are Scheme boolean values #t and #f.
+  # Variables are Scheme symobols.
+  # We have boolean connectives: and, or, not, implies, iff, xor.
+  # All expressions will be properly parenthesized so that you don't
+  # need to worry about precedence rules.
+  # Some example expressions:
+  #  #t
+  #  (a and b)
+  #  ((a and #t) or (b implies (not c)))
+  # The context, in which an expression can be evaluated is an assignment
+  # of values to all varibles in the expression. We will represent such an
+  # assignment by a list of pairs. For example:
+  # ((a . #t) (b . #f) (c . #f) (d . #t)) means that
+  # a has value true, b has value false, etc.
+  |#
+  
+  ;; (boolean-eval expr context) -> boolean
+  ;; expr: list
+  ;; context: list of pairs
+  ;; Return the value of expr with values of all variables
+  ;; that occur in expr specified in context.
+  ;; Think carefully about designing your solution. Clear, easy to
+  ;; read, modular code will receive more marks. How easy is it to 
+  ;; add another operator (for example, nand) in your solution?
+  (define boolean-eval 42)
+  
+  (provide filter filter-tail filter-all filter-deep boolean-eval) 
+)

@@ -1,0 +1,15 @@
+#lang racket
+(module lab4 scheme
+
+(define map1 42)
+
+(define map1-tail 42)
+
+(define mmap 42)
+
+(define deep-map 42)
+
+(provide map1 map1-tail mmap deep-map)
+
+
+)

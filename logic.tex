@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{amsfonts,amssymb,amsthm,fancybox,amsmath,fullpage}
+
+\usepackage{comment}
+\usepackage{epsfig}
+
+\includecomment{question}
+\includecomment{solution}
+\excludecomment{variants}
+
+\excludecomment{history}
+\excludecomment{difficulty}
+\includecomment{grading}
+\excludecomment{remarks}
+\excludecomment{ignore}
+
+\setlength{\parskip}{1ex}
+\newcommand{\ints}{{\cal Z}}
+\newcommand{\htab}{\hspace*{.5cm}}
+\newcommand{\tab}{\htab\htab}
+
+\newif\ifsolutions
+\newif\ifmarking
+%\markingtrue
+%\solutionstrue
+
+\begin{document}
+\begin{center}
+\textsc{\Large CSCC24 Execise 6 \\[1.0ex] }
+\end{center}
+\large
+
+1. Translate each of the following into first order logic.
+
+a. $\forall$x(student(x) $\rightarrow$ (walks(x) $\vee$ drives(x) $\vee$ rides(x)))
+
+b. $\forall$x(student(x)  $\wedge$ lives-at(x, y) $\wedge$ lives-at(Andrew, y)) 
+
+c. (greater($\exists$x(distance($\exists$y(lives-at(Andrew, y)), $\exists$z(Andrew, z), x)), ($\exists$w(distance(High Park, St. George, w)))) $\rightarrow$ $\not$(walk(Andrew)))
+
+d. $\exists$x$\forall$y, z((permits(x, z, y) $\wedge$ owns(x, y)) $\rightarrow$ (uses(x, y)))
+
+e. $\exists$x, y(owns(x, TTCmaps) $\wedge$ permits(x, y, TTCmaps))
+
+\end{document}
